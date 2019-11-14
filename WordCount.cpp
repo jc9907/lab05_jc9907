@@ -132,10 +132,33 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 
 void WordCount::addAllWords(std::string text) {
 	string s = stripWord(text);
-	for (size_t i = 0; i < s.size(); i++)
-		s[i] = toupper(s[i]);
-	while(s[0]==' '|| s[0] == '/n'){
+
+	while (s[0] == ' '|| s[0]=='\n'){
 		s.erase(0,1);
 	}
-	cout<<s<<endl;
+
+	for(size_t j = 0; j < s.length(); j++){
+		if(s[j] == '\n'||s[j] == ' '){
+			while((j != s.length() - 1) && (s[j+1] == '\n'||s[j+1] == ' ')){
+				s.erase(j+1,1);
+			}
+		}
+	}
+
+	while(s[s.length()-1] == ' '||s[s.length()-1] == '\n'){
+		s.pop_back();
+	}
+	size_t i = 0;
+	int count = 0;
+	while (i<s.length()){
+		count++;
+		if (s[i] == '\n'||s[i] == ' '){
+			incrWordCount(s.substr(0, count-1));
+			s.erase(0,count);
+			i = 0;
+			count = 0;
+		}
+		else{i++;}
+	}
+	this->incrWordCount(s);
 }
