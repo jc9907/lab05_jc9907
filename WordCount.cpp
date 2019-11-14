@@ -121,8 +121,8 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 	for(size_t i = 0; i < CAPACITY; i++){
 		for (auto n : table[i]){
 			v.push_back(n);
-			}
 		}
+	}
 
 	sort(v.begin(), v.end(), wayToSort2);
 
