@@ -3,8 +3,13 @@
 #ifndef WORDCOUNT_H
 #define WORDCOUNT_H
 
+#include "WordCount.h"
+#include <ostream>
 #include <iostream>
 #include <string>
+#include <cctype>
+#include <cstring>
+#include <algorithm>
 #include <vector>
 #include <utility>
 
