@@ -135,7 +135,7 @@ void WordCount::addAllWords(std::string text) {
 
 	while (s[0] == ' '|| s[0]=='\n'){
 		s.erase(0,1);
-	}
+	}//erase front
 
 	for(size_t j = 0; j < s.length(); j++){
 		if(s[j] == '\n'||s[j] == ' '){
@@ -143,11 +143,11 @@ void WordCount::addAllWords(std::string text) {
 				s.erase(j+1,1);
 			}
 		}
-	}
+	}//erase in middle
 
 	while(s[s.length()-1] == ' '||s[s.length()-1] == '\n'){
 		s.pop_back();
-	}
+	}//erase back
 	size_t i = 0;
 	int count = 0;
 	while (i<s.length()){
@@ -160,5 +160,5 @@ void WordCount::addAllWords(std::string text) {
 		}
 		else{i++;}
 	}
-	this->incrWordCount(s);
+	this->incrWordCount(s);//incr
 }

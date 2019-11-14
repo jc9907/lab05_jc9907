@@ -9,7 +9,7 @@ int main(){
     WordCount w;
     string a = "sentence is a sentence";
     string b = "sentence is      a              sentence";
-    string c = "sentence \n is a\n\n\n\n sentence  \n crazy\n test test test";
+    string c = "sentence \n is  a\n\n\n\n sentence  \n crazy\n test  test  test";
     w.addAllWords(c);
     ostringstream oss;
     w.dumpWordsSortedByOccurence(oss);
