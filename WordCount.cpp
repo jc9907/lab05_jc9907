@@ -101,7 +101,7 @@ std::string WordCount::stripWord(std::string word) {
 	}
 	return word;
 }
-bool wayToSort1(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.first > p2.first; }
+bool wayToSort1(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.first < p2.first; }
 void WordCount::dumpWordsSortedByWord(std::ostream &out) const {
 	vector<pair<string, size_t>> v;
 	for(size_t i = 0; i < CAPACITY; i++){
@@ -117,7 +117,11 @@ void WordCount::dumpWordsSortedByWord(std::ostream &out) const {
 		out<<v[i].first<<","<<v[i].second<<endl;}
 }
 
-bool wayToSort2(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.second > p2.second; }
+bool wayToSort2(pair<string, size_t> p1, pair<string, size_t> p2) { 
+	if (p1.second == p2.second){
+		return wayToSort1(p1,p2);
+	}
+	return p1.second > p2.second; }
 
 void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 	vector<pair<string, size_t>> v;
