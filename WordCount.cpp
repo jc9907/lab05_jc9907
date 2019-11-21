@@ -8,6 +8,8 @@
 #include <cstring>
 #include <algorithm>
 #include <vector>
+#include <ctype.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Default constructor
@@ -131,34 +133,18 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 }
 
 void WordCount::addAllWords(std::string text) {
-	string s = stripWord(text);
+	string s = text.c_str();
 
-	while (s[0] == ' '|| s[0]=='\n'){
-		s.erase(0,1);
-	}//erase front
+	size_t index = 0;
+	size_t k = s.size() - 1;
 
-	for(size_t j = 0; j < s.length(); j++){
-		if(s[j] == '\n'||s[j] == ' '){
-			while((j != s.length() - 1) && (s[j+1] == '\n'||s[j+1] == ' ')){
-				s.erase(j+1,1);
-			}
+	for(size_t i = 0; i < s.size(); i++){
+		if(s[i] == ' '||s[i] == '\n'){
+			this->incrWordCount(s.substr(index,  i-index));
+			index = i;
 		}
-	}//erase in middle
-
-	while(s[s.length()-1] == ' '||s[s.length()-1] == '\n'){
-		s.pop_back();
-	}//erase back
-	size_t i = 0;
-	int count = 0;
-	while (i<s.length()){
-		count++;
-		if (s[i] == '\n'||s[i] == ' '){
-			incrWordCount(s.substr(0, count-1));
-			s.erase(0,count);
-			i = 0;
-			count = 0;
+		if (i == k){
+			this->incrWordCount(s.substr(index, s.size()-index));
 		}
-		else{i++;}
 	}
-	this->incrWordCount(s);//incr
 }
