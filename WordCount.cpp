@@ -121,29 +121,29 @@ bool wayToSort2(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.se
 void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 	vector<pair<string, size_t>> v;
 	for(size_t i = 0; i < CAPACITY; i++){
-		for (auto n : table[i]){
-			v.push_back(n);
+		if (!table[i].empty()){
+			for (size_t k = 0; k<table[i].size();k++)
+				v.push_back(table[i].at(k));
 		}
 	}
 
 	sort(v.begin(), v.end(), wayToSort2);
 
-	for(auto n: v)
-		out<<n.first<<","<<n.second<<"\n";
+	for(size_t i = 0; i<s1.size(); i++){
+		out<<v[i].first<<","<<v[i].second<<endl;}
 }
 
 void WordCount::addAllWords(std::string text) {
 	string s = text.c_str();
 
 	size_t index = 0;
-	size_t k = s.size() - 1;
 
 	for(size_t i = 0; i < s.size(); i++){
 		if(s[i] == ' '||s[i] == '\n'){
 			this->incrWordCount(s.substr(index,  i-index));
 			index = i;
 		}
-		if (i == k){
+		if (i == s.size()-1){
 			this->incrWordCount(s.substr(index, s.size()-index));
 		}
 	}
