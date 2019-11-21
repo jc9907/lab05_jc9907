@@ -105,15 +105,16 @@ bool wayToSort1(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.fi
 void WordCount::dumpWordsSortedByWord(std::ostream &out) const {
 	vector<pair<string, size_t>> v;
 	for(size_t i = 0; i < CAPACITY; i++){
-		for (auto n : table[i]){
-			v.push_back(n);
-			}
+		if (!table[i].empty()){
+			for (size_t k = 0; k<table[i].size();k++)
+				v.push_back(table[i].at(k));
 		}
+	}
 
 	sort(v.begin(), v.end(),wayToSort1);
 
-	for(auto n: v)
-		out<<n.first<<","<<n.second<<"\n";
+	for(size_t i = 0; i<v.size(); i++){
+		out<<v[i].first<<","<<v[i].second<<endl;}
 }
 
 bool wayToSort2(pair<string, size_t> p1, pair<string, size_t> p2) { return p1.second > p2.second; }
@@ -129,7 +130,7 @@ void WordCount::dumpWordsSortedByOccurence(std::ostream &out) const {
 
 	sort(v.begin(), v.end(), wayToSort2);
 
-	for(size_t i = 0; i<s1.size(); i++){
+	for(size_t i = 0; i<v.size(); i++){
 		out<<v[i].first<<","<<v[i].second<<endl;}
 }
 
