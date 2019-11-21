@@ -148,8 +148,11 @@ void WordCount::addAllWords(std::string text) {
 			this->incrWordCount(s.substr(index,  i-index));
 			index = i;
 		}
+		}
+	for(size_t i = 0; i < s.size(); i++){
 		if (i == s.size()-1){
 			this->incrWordCount(s.substr(index, s.size()-index));
 		}
 	}
+	
 }
